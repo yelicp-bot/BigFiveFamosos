@@ -44,7 +44,9 @@ st.success(f"### 🎉 ¡Has sido asignado al Clúster: {mi_cluster}!")
 # Obtener y mostrar las 5 celebridades destacadas de este clúster
 st.subheader(f"👥 Famosos en el Clúster {mi_cluster} (Muestra de 5)")
 famosos_cluster = df_data[df_data['cluster'] == mi_cluster][['usuario', 'op', 'co', 'ex', 'ag', 'ne']]
-st.dataframe(famosos_cluster.head(5))
+
+# Usamos st.table en lugar de st.dataframe para evitar el bug de JS dinámico en la nube
+st.table(famosos_cluster.head(5))
 
 # Preparación de datos para el radar
 features = ['op', 'co', 'ex', 'ag', 'ne']
